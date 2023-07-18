@@ -1,0 +1,20 @@
+
+.flex{
+  display:flex;
+  flex-flow: wrap;
+  
+}
+
+.row{
+  width: 100%;
+
+}
+
+.clearbutton{
+  all:unset;
+}
+
+
+div.gallery:hover {
+  border: 1px solid #777;
+}

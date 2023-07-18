@@ -1,0 +1,41 @@
+<div *ngIf="welcome">
+    <h3 >Welcome {{getCurrentAccountName()}} <button (click)="logOut()">Log Out</button></h3>
+
+        <div *ngIf="!showRecipeDetails">
+        <p>Ingredient Name:</p>
+        <input type="text" [(ngModel)]="input">
+        <button (click)="getRecipe()">Search</button>
+        <br><br>
+
+
+      
+            <div class="flex">
+        <div *ngFor="let r of results;index as i" style="width: 24%; border-style:ridge;">
+            <!-- <div class="desc"><p>{{r.title}}</p></div> -->
+            <!-- <img src={{r.image}}> -->
+            <button  *ngIf="!compareIsMaxed && !isCompared[i]" (click)="addRecipeToCompareList(r.id, i)">Compare</button>
+            <button *ngIf="isCompared[i]" (click)="removeRecipeFromCompareList(r.id, i)">Stop Comparing</button>
+            
+            <button *ngIf="!r.isFavorited" (click)="addToFavorites(r.id, account.id, r)">Add To Favorite</button>
+            <p *ngIf="r.isFavorited">❤️</p>
+            <p>{{isFavorited[i]}}</p>
+        
+            <!-- <button (click)="displayDetails(r.id)"><img src={{r.image}}><p class="desc">{{r.title}}</p></button> -->
+
+            <!-- <button (click)=" getRecipeDetails(r.id)"><img src={{r.image}}><p class="desc">{{r.title}}</p></button><br><br> -->
+            <div class="gallery">
+            <button (click)=" displayDetails(r.id)"  class="clearbutton"><img style="width: 80%; margin:auto;"  src={{r.image}}><br><p>{{r.title}}</p></button><br>
+            </div>
+        
+        </div>
+    </div>
+</div>
+   
+<!-- </div> -->
+    <button *ngIf="showRecipeDetails"  (click)="backRecipe()">⬅️Back</button>  
+    <app-recipe-details  *ngIf="showRecipeDetails" [displayRecipe]="selectedSavedRecipe" 
+        [instructions]="instructions" [ingredients]="ingredients"></app-recipe-details>
+
+
+  
+    <!-- <app-recipe-details  *ngIf="showRecipeDetails" [displayRecipe]="selectedRecipe"></app-recipe-details> -->
