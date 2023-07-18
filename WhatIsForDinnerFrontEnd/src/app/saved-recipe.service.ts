@@ -45,4 +45,9 @@ PostSavedRecipeByRecipeId( recipeId:number):Observable<any>{
   return this.http.post<void>(this.url + "/" +recipeId,{});
 }
 
+GettotalFavAccount():Observable<number[]>{
+  return this.http.get<number[]>(this.url+"/totalFavAccount")
+}
+
+
 }

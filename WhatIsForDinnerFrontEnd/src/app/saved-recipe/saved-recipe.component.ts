@@ -25,8 +25,11 @@ existInFavorite:boolean=false;
 accountSavedRecipes:SavedRecipe[]=[];
 instructions:string[] = [];
 ingredients:string[] = [];
+totalFav:number[]=[];
 
-constructor(private savedRecipeService:SavedRecipeService,private spoonacualarService:SpoonacualarService,private accountService:AccountService,private favoriteService:FavoritesService){}
+constructor(private savedRecipeService:SavedRecipeService,private spoonacualarService:SpoonacualarService,private accountService:AccountService,private favoriteService:FavoritesService){
+  
+}
 
   ngOnInit(): void {
   //  for(let i=0;i<20;i++)
@@ -35,9 +38,15 @@ constructor(private savedRecipeService:SavedRecipeService,private spoonacualarSe
   //     this.savedRecipeList.push(result);
   //   }
   //  )
+
   this.savedRecipeService.getAllSavedRecipe().subscribe(
     (result:SavedRecipe[])=>{
       this.savedRecipeList=result;
+    }
+  )
+  this.savedRecipeService.GettotalFavAccount().subscribe(
+    (result:number[])=>{
+    this.totalFav=result;
     }
   )
   this.account=this.accountService.currentAccount;

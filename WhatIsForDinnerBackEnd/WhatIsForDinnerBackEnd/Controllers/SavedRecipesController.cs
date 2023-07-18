@@ -218,5 +218,36 @@ namespace WhatIsForDinnerBackEnd.Controllers
             return id;
         }
 
+        [HttpGet("totalFavAccount")]
+        public async Task<ActionResult<IEnumerable<int>>> GettotalFavAccount()
+
+        {
+            List<SavedRecipe> savedRecipesList = _context.SavedRecipes.ToList();
+            List<int> totalFavAccountList = new List<int>();
+            for (int i = 0; i < savedRecipesList.Count; i++)
+            {
+                int totalFavAccount = _context.Favorites.Where(f => f.RecipeId == savedRecipesList[i].Id).Count();
+                totalFavAccountList.Add(totalFavAccount);
+
+            }
+
+            return totalFavAccountList;
+        }
+        //public async Task<ActionResult<IEnumerable<SavedRecipe>>> GettotalFavAccount()
+        //{
+        //    List<SavedRecipe> savedRecipesList = _context.SavedRecipes.ToList();
+        //    List<int> totalFavAccountList = new List<int>();
+        //    for (int i = 0; i < savedRecipesList.Count; i++)
+        //    {
+        //        int totalFavAccount = _context.Favorites.Where(f => f.RecipeId == savedRecipesList[i].Id).Count();
+        //        //totalFavAccountList.Add(totalFavAccount);
+        //        savedRecipesList[i].totalFav = totalFavAccount;
+
+        //    }
+        //    return savedRecipesList;
+        //}
+
+
+
     }
 }

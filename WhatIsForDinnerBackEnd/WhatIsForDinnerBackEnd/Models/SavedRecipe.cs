@@ -19,7 +19,7 @@ public partial class SavedRecipe
     public int? Servings { get; set; }
 
     public string? AnalizedInstructions { get; set; }
-  
+ 
 
     public virtual ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
 }

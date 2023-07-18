@@ -15,6 +15,7 @@ export interface SavedRecipe {
     servings:             number;
     analizedInstructions: string;
     favorites:            any[];
+    totalFav:number;
 }
 
 // Converts JSON strings to/from your types

@@ -259,16 +259,38 @@ namespace WhatIsForDinnerBackEnd.Controllers
             //favorite.Id =null;
         }
 
-        [HttpPost("CreateFavoriteBySavedRecipeId/{savedRecipeId}")]
+        //[HttpPost("CreateFavoriteBySavedRecipeId/{savedRecipeId}")]
 
+        //public async Task<ActionResult<Favorite>> PostFavoriteBySavedRecipeId(int savedRecipeId, int accountId)
+        //{
+
+        //    Favorite favorite = new Favorite() { RecipeId = savedRecipeId, AccountId = accountId };
+        //    _context.Favorites.Add(favorite);
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtAction("GetFavorite", new { id = favorite.Id }, favorite);
+        //}
+
+        [HttpPost("CreateFavoriteBySavedRecipeId/{savedRecipeId}")]
         public async Task<ActionResult<Favorite>> PostFavoriteBySavedRecipeId(int savedRecipeId, int accountId)
         {
+            //List<int> savedRecipeIds = _context.SavedRecipes.Where(e => e.RecipeId == recipeId).Select(e => e.Id).ToList();
+            List<int> userFavs = _context.Favorites.Where(id => id.AccountId == accountId).Select(id => id.RecipeId).ToList();
 
-            Favorite favorite = new Favorite() { RecipeId = savedRecipeId, AccountId = accountId };
-            _context.Favorites.Add(favorite);
-            await _context.SaveChangesAsync();
+            if (userFavs.Contains(savedRecipeId))
+            {
 
-            return CreatedAtAction("GetFavorite", new { id = favorite.Id }, favorite);
+                return new Favorite();
+            }
+            else
+            {
+
+                Favorite favorite = new Favorite() { RecipeId = savedRecipeId, AccountId = accountId };
+                _context.Favorites.Add(favorite);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetFavorite", new { id = favorite.Id }, favorite);
+            }
         }
 
         [HttpGet("ResultsAreFavorited/{accountId}/{resultQuery}")]
