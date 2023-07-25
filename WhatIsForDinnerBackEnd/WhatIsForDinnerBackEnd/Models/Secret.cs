@@ -2,8 +2,8 @@
 {
     public static class Secret
     {
-        public static string UserName = "Tim-Yiding";
-        public static string Password = "WhatIsForDinner!1";
+        //public static string UserName = "Tim-Yiding";
+        //public static string Password = "WhatIsForDinner!1";
         public static string ApiKey = "035750fb84744c3792dea855762069b2";
         //public static string ApiKey = "63ef633f4792419180597cc766ac5605";
         //public static string ApiKey = "92c3d1c61af94472b1fa1ed627d02a2f";
